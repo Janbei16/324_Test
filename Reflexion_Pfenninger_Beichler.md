@@ -47,3 +47,9 @@ Während der Umsetzung der Pipeline traten folgende Herausforderungen auf:
  
 ## Fazit
 Die Arbeit an dieser CI/CD-Pipeline hat mir gezeigt, wie wichtig ein klar strukturierter Aufbau und das frühzeitige Erkennen von Fehlern für die Qualitätssicherung sind. Durch das Teilen der Pipeline in mehrere Jobs konnte ich eine übersichtliche und wartbare Struktur schaffen. Zukünftig könnte eine Optimierung durch automatisiertes Deployment und erweiterte Tests die Pipeline weiter verbessern und den Entwicklungsprozess effizienter gestalten.
+
+## Probleme
+
+Wir konnten den test nicht ausführen, weil es den Header im Header.test.js nicht gefunden hat. Unser test ist jetzt nur ein echo wegen diesem Problem. Wir haben festgestellt, dass der Import nicht funktionierte, weil das vscode von Jannis Beichlers Laptops viele allgemeine probleme mit sich brachten.
+
+Die Version stimmte auch nicht aber diese konnten wir ändern. Test war so erfolgreich aber halt mit einem echo 
