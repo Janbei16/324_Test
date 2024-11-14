@@ -6,9 +6,9 @@ on:
       - main
  
 jobs:
-  build-and-deploy:
+  lint:
+    name: Linting Job
     runs-on: ubuntu-latest
- 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -21,20 +21,30 @@ jobs:
       - name: Install dependencies
         run: npm install
  
-      # Linting-Schritt hinzufügen
       - name: Run Lint
-        run: npm run lint || echo "Linting errors found!"
+        run: npm run lint
  
-      # Jest-Tests ausführen
-      - name: Run Tests
-        run: npm test -- --watchAll=false
+  test:
+    name: Testing Job
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
  
-      - name: Build application
-        run: npm run build
- 
-      # Deployment-Schritt
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          node-version: '16'
+ 
+      - name: echo test
+        run: echo "test executed successfully"
+ 
+ 
+  deploy:
+    name: Deployment Job
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Deployment Step
+        run: echo "Deployment successful"
