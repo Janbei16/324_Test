@@ -10,28 +10,29 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
-      # Code auschecken
       - name: Check out code
         uses: actions/checkout@v2
  
-      # Node.js einrichten
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
  
-      # Abhängigkeiten installieren und testen
       - name: Install dependencies
         run: npm install
  
-      - name: Run tests
-        run: npm test
+      # Linting-Schritt hinzufügen
+      - name: Run Lint
+        run: npm run lint || echo "Linting errors found!"
  
-      # Anwendung bauen
+      # Jest-Tests ausführen
+      - name: Run Tests
+        run: npm test -- --watchAll=false
+ 
       - name: Build application
         run: npm run build
  
-      # Deployment-Schritt (z. B. mit GitHub Pages)
+      # Deployment-Schritt
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
